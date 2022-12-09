@@ -1,17 +1,14 @@
-import CheckOut from "./components/CheckOut";
+//import CheckOut from "./components/CheckOut";
 import Movies from "./components/Movies";
 import NavBar from "./components/NavBar";
-import Seats from "./components/Seats";
-import Section from "./components/Section";
+//import Seats from "./components/Seats";
+//import Section from "./components/Section";
 
 function App() {
   return (
     <>
     <NavBar/>
     <Movies/>
-    <Section/>
-    <Seats/>
-    <CheckOut/>
     </>
   )
 }
