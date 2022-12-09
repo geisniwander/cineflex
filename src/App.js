@@ -8,14 +8,13 @@ import Section from "./components/Section";
 function App() {
   return (
     <BrowserRouter>
+          <NavBar />
       <Routes>
-        <Route path="/" element={Movies}></Route>
-        <Route path="/sessoes/:idFilme" element={Seats}></Route>
-        <Route path="/assentos/:idSessao" element={Section}></Route>
-        <Route path="/checkout" element={CheckOut}></Route>
+        <Route path="/" element={<Movies/>}/>
+        <Route path="/sessoes/:idFilme" element={<Section/>}/>
+        <Route path="/assentos/:idSessao" element={<Seats/>}/>
+        <Route path="/checkout" element={<CheckOut/>}/>
       </Routes>
-      <NavBar />
-      <Movies />
     </BrowserRouter>
   );
 }
