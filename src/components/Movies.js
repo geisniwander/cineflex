@@ -21,16 +21,16 @@ export default function Movies() {
   }
 
   return (
-    <>
+    <Container>
       <Title>Selecione o filme</Title>
-      <ul>
+      <ContainerMovie>
         {movies.map((movie) => (
           <li key={movie.id}>
             <img alt={movie.title} src={movie.posterURL} />
           </li>
         ))}
-      </ul>
-    </>
+      </ContainerMovie>
+    </Container>
   );
 }
 
@@ -46,3 +46,25 @@ const Title = styled.div`
   align-items: center;
   justify-content: center;
 `;
+
+const Container = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`
+
+const ContainerMovie = styled.ul`
+    width: 85%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    li{
+        width:129px;
+        height: 193px;
+        margin-bottom: 10%;
+    }
+    img{
+        width: 100%;
+    }
+`
