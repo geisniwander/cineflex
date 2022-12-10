@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
 
-export default function Section() {
+export default function Section({setSelectedSession}) {
   const { idFilme } = useParams();
   const [sections, setSections] = useState(undefined);
 
@@ -32,7 +32,7 @@ export default function Section() {
               {section.weekday} - {section.date}
             </h1>
             {section.showtimes.map((showtime) => (
-              <Link to={`/assentos/${showtime.id}`}>
+              <Link onClick={()=> setSelectedSession(section.date + " " + showtime.name)} to={`/assentos/${showtime.id}`}>
                 <Button>{showtime.id}</Button>
               </Link>
             ))}

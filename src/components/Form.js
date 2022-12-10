@@ -3,19 +3,21 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-export default function Form({ selected }) {
-  const [name, setName] = useState("");
-  const [cpf, setCpf] = useState("");
+export default function Form({ selected, name, setName, cpf, setCpf }) {
   const navigate = useNavigate();
 
   function post(e) {
     e.preventDefault();
-    const promise = axios.post(
-      "https://mock-api.driven.com.br/api/v8/cineflex/seats/book-many",
-      { ids: selected, name, cpf }
-    );
-    promise.then(() => navigate("/checkout"));
-    promise.catch((err) => console.log(err));
+    if (selected.length === 0) {
+      alert("Selecione ao menos um assento");
+    }else {
+      const promise = axios.post(
+        "https://mock-api.driven.com.br/api/v8/cineflex/seats/book-many",
+        { ids: selected, name, cpf }
+      );
+      promise.then(() => navigate("/checkout"));
+      promise.catch((err) => console.log(err));
+    }
   }
   return (
     <Container>
@@ -42,7 +44,6 @@ export default function Form({ selected }) {
             required
           ></Input>
         </ContainerInput>
-
         <Button type="submit">Reservar assento(s)</Button>
       </FormS>
     </Container>

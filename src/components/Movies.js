@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export default function Movies() {
+export default function Movies({setSelectedMovie}) {
   const [movies, setMovies] = useState(undefined);
 
   useEffect(() => {
@@ -26,7 +26,7 @@ export default function Movies() {
       <Title>Selecione o filme</Title>
       <ContainerMovie>
         {movies.map((movie) => (
-          <Link to={`/sessoes/${movie.id}`}>
+          <Link onClick={()=>setSelectedMovie(movie.title)} to={`/sessoes/${movie.id}`}>
             <li key={movie.id}>
               <img alt={movie.title} src={movie.posterURL} />
             </li>

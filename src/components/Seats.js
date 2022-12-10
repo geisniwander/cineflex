@@ -4,10 +4,10 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import Form from "./Form";
 
-export default function Seats() {
+export default function Seats({name, setName, cpf, setCpf, selected, setSelected}) {
   const { idSessao } = useParams();
   const [seats, setSeats] = useState(undefined);
-  const [selected, setSelected] = useState([]);
+
 
   useEffect(() => {
     const promise = axios.get(
@@ -72,7 +72,7 @@ export default function Seats() {
           <h1>Indisponível</h1>
         </Info>
       </ContainerInfo>
-      <Form selected={selected}/>
+      <Form selected={selected} name={name} setName={setName} cpf={cpf} setCpf={setCpf}/>
     </Container>
   );
 }
