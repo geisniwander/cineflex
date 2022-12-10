@@ -14,7 +14,7 @@ export default function Form({ selected, name, setName, cpf, setCpf }) {
         "https://mock-api.driven.com.br/api/v8/cineflex/seats/book-many",
         { ids: selected, name, cpf }
       );
-      promise.then(() => navigate("/checkout"));
+      promise.then(() => navigate("/sucesso"));
       promise.catch((err) => console.log(err));
     }
   }

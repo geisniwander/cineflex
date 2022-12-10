@@ -6,28 +6,29 @@ export default function CheckOut({
   name,
   cpf,
   selectedMovie,
-  selectedSession,
+  selectedSuccess,
 }) {
   return (
     <Container>
       <Title color="#247A6B">
-        <h1>Pedido feito</h1>
-        <h1>com sucesso</h1>
+        Pedido feito
+        <br/>
+        com sucesso!
       </Title>
       <ContainerSuccess>
         <SubTitle color="#293845" data-test="movie-info">
-          <h1>Filme e sessão</h1>
+          Filme e sessão
           <h2>{selectedMovie}</h2>
-          <h2>{selectedSession}</h2>
+          <h2>{selectedSuccess}</h2>
         </SubTitle>
         <SubTitle color="#293845" data-test="seats-info">
-          <h1>Ingressos</h1>
+          Ingressos
           {selected.map((s) => (
             <h2 key={s}>Assento {s}</h2>
           ))}
         </SubTitle>
         <SubTitle color="#293845" data-test="client-info">
-          <h1>Comprador</h1>
+          Comprador
           <h2>Nome: {name}</h2>
           <h2>CPF: {cpf}</h2>
         </SubTitle>
@@ -46,7 +47,7 @@ const Container = styled.div`
 `;
 
 const Title = styled.div`
-  margin-top: 67px;
+  margin-top: 80px;
   height: 120px;
   font-size: 24px;
   font-weight: 700;
@@ -55,10 +56,8 @@ const Title = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  text-align: center;
   letter-spacing: 1px;
-  h1 {
-    margin-top: 2%;
-  }
 `;
 
 const SubTitle = styled.div`
@@ -101,5 +100,5 @@ const Button = styled.button`
   letter-spacing: 0.04em;
   color: white;
   border: none;
-  margin-top: 5%;
+  margin-top: 40%;
 `;
