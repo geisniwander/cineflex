@@ -4,10 +4,19 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import Form from "./Form";
 
-export default function Seats({name, setName, cpf, setCpf, selected, setSelected}) {
+export default function Seats({
+  name,
+  setName,
+  cpf,
+  setCpf,
+  selected,
+  setSelected,
+  selectedMovie,
+  selectedSession,
+  imageMovie,
+}) {
   const { idSessao } = useParams();
   const [seats, setSeats] = useState(undefined);
-
 
   useEffect(() => {
     const promise = axios.get(
@@ -26,9 +35,10 @@ export default function Seats({name, setName, cpf, setCpf, selected, setSelected
 
   function select(seat) {
     if (selected.includes(seat.id)) {
-      let index = selected.indexOf(seat.id);
-      selected.splice(index, 1);
-      console.log(selected);
+      const array = selected;
+      const index = array.indexOf(seat.id);
+      array.splice(index, 1);
+      setSelected([...array]);
     } else if (seat.isAvailable) {
       setSelected([...selected, seat.id]);
     } else if (!seat.isAvailable) {
@@ -37,21 +47,23 @@ export default function Seats({name, setName, cpf, setCpf, selected, setSelected
   }
 
   function color(seat) {
-    if (seat.isAvailable) {
+    if (selected.includes(seat.id)) {
+      return "#1AAE9E";
+    } else if (seat.isAvailable) {
       return "#C3CFD9";
     } else if (!seat.isAvailable) {
       return "#FBE192";
     }
   }
-  console.log(selected);
+
   return (
     <Container>
       <Title>Selecione o(s) assento(s)</Title>
       <ContainerSeats>
         {seats.seats.map((seat) => (
           <ButtonSeat
+            color={() => color(seat)}
             onClick={() => select(seat)}
-            color={() => (selected.includes(seat.id) ? "#1AAE9E" : color(seat))}
             border={seat.isAvailable ? "#7B8B99" : "#F7C52B"}
           >
             {seat.name}
@@ -72,7 +84,23 @@ export default function Seats({name, setName, cpf, setCpf, selected, setSelected
           <h1>Indisponível</h1>
         </Info>
       </ContainerInfo>
-      <Form selected={selected} name={name} setName={setName} cpf={cpf} setCpf={setCpf}/>
+      <Form
+        selected={selected}
+        name={name}
+        setName={setName}
+        cpf={cpf}
+        setCpf={setCpf}
+      />
+
+      <Footer>
+        <MovieImage>
+          <img alt={selectedMovie} src={imageMovie} />
+        </MovieImage>
+        <Infos>
+          <h1>{selectedMovie}</h1>
+          <h1>{selectedSession}</h1>
+        </Infos>
+      </Footer>
     </Container>
   );
 }
@@ -136,5 +164,49 @@ const Info = styled.div`
   color: #4e5a65;
   h1 {
     margin-top: 6%;
+  }
+`;
+
+const Infos = styled.div`
+  width: 80%;
+`;
+
+const Footer = styled.div`
+  width: 100%;
+  height: 117px;
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+  background: #dfe6ed;
+  border: 1px solid #9eadba;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  h1 {
+    margin-left: 4%;
+    font-family: "Roboto", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 30px;
+    color: #293845;
+  }
+`;
+
+const MovieImage = styled.div`
+  width: 64px;
+  height: 89px;
+  left: 10px;
+  bottom: 14px;
+  background: #ffffff;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 2%;
+  img {
+    width: 48px;
+    height: 72px;
   }
 `;

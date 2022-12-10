@@ -32,7 +32,7 @@ export default function Section({setSelectedSession}) {
               {section.weekday} - {section.date}
             </h1>
             {section.showtimes.map((showtime) => (
-              <Link onClick={()=> setSelectedSession(section.date + " " + showtime.name)} to={`/assentos/${showtime.id}`}>
+              <Link onClick={()=> setSelectedSession(section.date + " - " + showtime.name)} to={`/assentos/${showtime.id}`}>
                 <Button>{showtime.id}</Button>
               </Link>
             ))}

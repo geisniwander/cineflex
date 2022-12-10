@@ -11,18 +11,19 @@ function App() {
   const [cpf, setCpf] = useState("");
   const [selected, setSelected] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(undefined);
+  const [imageMovie, setImageMovie] = useState(undefined);
   const [selectedSession, setSelectedSession] = useState(undefined);
 
   return (
     <BrowserRouter>
       <NavBar />
       <Routes>
-        <Route path="/" element={<Movies setSelectedMovie={setSelectedMovie} />} />
+        <Route path="/" element={<Movies setSelectedMovie={setSelectedMovie} setImageMovie={setImageMovie} />} />
         <Route path="/sessoes/:idFilme" element={<Section setSelectedSession={setSelectedSession} />} />
         <Route
           path="/assentos/:idSessao"
           element={
-            <Seats name={name} setName={setName} cpf={cpf} setCpf={setCpf} selected={selected} setSelected={setSelected}/>
+            <Seats name={name} setName={setName} cpf={cpf} setCpf={setCpf} selected={selected} setSelected={setSelected} imageMovie={imageMovie} selectedMovie={selectedMovie} selectedSession={selectedSession} />
           }
         />
         <Route path="/checkout" element={<CheckOut name={name} cpf={cpf} selected={selected} selectedMovie={selectedMovie} selectedSession={selectedSession} />} />
