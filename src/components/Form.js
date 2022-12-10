@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -31,19 +32,23 @@ export default function Form({ selected, name, setName, cpf, setCpf }) {
             onChange={(e) => setName(e.target.value)}
             required
             data-test="client-name"
-          ></Input>
+          />
         </ContainerInput>
         <ContainerInput>
           <label htmlFor="cpf">CPF do comprador</label>
           <Input
             id="cpf"
-            type="number"
+            type="text"
             placeholder="Digite seu cpf"
             value={cpf}
-            onChange={(e) => setCpf(e.target.value)}
+            onChange={(e) => {
+              if (!isNaN(e.target.value)) {
+                setCpf(e.target.value);
+              }
+            }}
             required
             data-test="client-cpf"
-          ></Input>
+          />
         </ContainerInput>
         <Button type="submit" onClick={post} data-test="book-seat-btn">
           Reservar assento(s)

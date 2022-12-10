@@ -7,8 +7,8 @@ import Section from "./components/Section";
 import { useState } from "react";
 
 function App() {
-  const [name, setName] = useState(undefined);
-  const [cpf, setCpf] = useState(undefined);
+  const [name, setName] = useState("");
+  const [cpf, setCpf] = useState("");
   const [selected, setSelected] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(undefined);
   const [imageMovie, setImageMovie] = useState(undefined);

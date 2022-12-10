@@ -17,8 +17,8 @@ export default function CheckOut({
 }) {
     
   function clear() {
-    setCpf(undefined);
-    setName(undefined);
+    setCpf("");
+    setName("");
     setSelected([]);
     setSelectedSession(undefined);
     setSelectedSuccess(undefined);
