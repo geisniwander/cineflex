@@ -41,7 +41,7 @@ export default function Section() {
       </ContainerSection>
       <Footer>
         <MovieImage>
-          <img src={sections.posterURL} />
+          <img alt={sections.title} src={sections.posterURL} />
         </MovieImage>
         <h1>{sections.title}</h1>
       </Footer>
