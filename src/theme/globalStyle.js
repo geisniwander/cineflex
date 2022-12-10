@@ -20,6 +20,7 @@ const GlobalStyle = createGlobalStyle`
      font-size: 100%;
      font: inherit;
      vertical-align: baseline;
+     font-family: "Roboto", sans-serif;
  }
  
  article, aside, details, figcaption, figure, 
@@ -46,6 +47,7 @@ const GlobalStyle = createGlobalStyle`
  }
  *{
     overflow-x: hidden;
+    font-family: "Roboto", sans-serif;
  }
 `;
 export default GlobalStyle;

@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -10,7 +9,7 @@ export default function Form({ selected, name, setName, cpf, setCpf }) {
     e.preventDefault();
     if (selected.length === 0) {
       alert("Selecione ao menos um assento");
-    }else {
+    } else {
       const promise = axios.post(
         "https://mock-api.driven.com.br/api/v8/cineflex/seats/book-many",
         { ids: selected, name, cpf }
@@ -31,6 +30,7 @@ export default function Form({ selected, name, setName, cpf, setCpf }) {
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
+            data-test="client-name"
           ></Input>
         </ContainerInput>
         <ContainerInput>
@@ -42,9 +42,12 @@ export default function Form({ selected, name, setName, cpf, setCpf }) {
             value={cpf}
             onChange={(e) => setCpf(e.target.value)}
             required
+            data-test="client-cpf"
           ></Input>
         </ContainerInput>
-        <Button type="submit">Reservar assento(s)</Button>
+        <Button type="submit" data-test="book-seat-btn">
+          Reservar assento(s)
+        </Button>
       </FormS>
     </Container>
   );
@@ -69,7 +72,6 @@ const ContainerInput = styled.div`
   margin: 4%;
   display: flex;
   flex-direction: column;
-  font-family: "Roboto", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -85,6 +87,15 @@ const Input = styled.input`
   background: #ffffff;
   border: 1px solid #d5d5d5;
   border-radius: 3px;
+  box-sizing: border-box;
+  padding: 2%;
+  ::placeholder {
+    font-style: italic;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+    color: #afafaf;
+  }
 `;
 
 const Button = styled.button`
@@ -92,7 +103,6 @@ const Button = styled.button`
   height: 42px;
   background: #e8833a;
   border-radius: 3px;
-  font-family: "Roboto", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -103,4 +113,3 @@ const Button = styled.button`
   border: none;
   margin-top: 5%;
 `;
-

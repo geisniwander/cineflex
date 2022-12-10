@@ -13,7 +13,6 @@ const Nav = styled.div`
     top: 0;
     left: 0;
     background-color: #C3CFD9;
-    font-family: 'Roboto', sans-serif;
     font-size: 34px;
     font-weight: 400;
     color: #E8833A;

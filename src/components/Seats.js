@@ -62,9 +62,11 @@ export default function Seats({
       <ContainerSeats>
         {seats.seats.map((seat) => (
           <ButtonSeat
+            key={seat.id}
             color={() => color(seat)}
             onClick={() => select(seat)}
             border={seat.isAvailable ? "#7B8B99" : "#F7C52B"}
+            data-test="seat"
           >
             {seat.name}
           </ButtonSeat>
@@ -91,8 +93,7 @@ export default function Seats({
         cpf={cpf}
         setCpf={setCpf}
       />
-
-      <Footer>
+      <Footer data-test="footer">
         <MovieImage>
           <img alt={selectedMovie} src={imageMovie} />
         </MovieImage>
@@ -114,7 +115,6 @@ const Container = styled.div`
 const Title = styled.div`
   margin-top: 67px;
   height: 120px;
-  font-family: "Roboto", sans-serif;
   font-size: 24px;
   font-weight: 400;
   color: #293845;
@@ -157,7 +157,6 @@ const Info = styled.div`
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-size: 13px;
   line-height: 15px;
@@ -184,7 +183,6 @@ const Footer = styled.div`
   align-items: center;
   h1 {
     margin-left: 4%;
-    font-family: "Roboto", sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 26px;

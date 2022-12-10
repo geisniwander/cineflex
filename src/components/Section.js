@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
 
-export default function Section({setSelectedSession}) {
+export default function Section({ setSelectedSession }) {
   const { idFilme } = useParams();
   const [sections, setSections] = useState(undefined);
 
@@ -21,25 +21,31 @@ export default function Section({setSelectedSession}) {
   if (sections === undefined) {
     return <h1>Carregando...</h1>;
   }
- 
+
   return (
     <Container>
       <Title>Selecione o horário</Title>
       <ContainerSection>
         {sections.days.map((section) => (
-          <li key={section.id}>
+          <li key={section.id} data-test="movie-day">
             <h1>
               {section.weekday} - {section.date}
             </h1>
             {section.showtimes.map((showtime) => (
-              <Link onClick={()=> setSelectedSession(section.date + " - " + showtime.name)} to={`/assentos/${showtime.id}`}>
-                <Button>{showtime.id}</Button>
+              <Link
+                key={showtime.id}
+                onClick={() =>
+                  setSelectedSession(section.date + " - " + showtime.name)
+                }
+                to={`/assentos/${showtime.id}`}
+              >
+                <Button data-test="showtime">{showtime.id}</Button>
               </Link>
             ))}
           </li>
         ))}
       </ContainerSection>
-      <Footer>
+      <Footer data-test="footer">
         <MovieImage>
           <img alt={sections.title} src={sections.posterURL} />
         </MovieImage>
@@ -59,7 +65,6 @@ const Container = styled.div`
 const Title = styled.div`
   margin-top: 67px;
   height: 120px;
-  font-family: "Roboto", sans-serif;
   font-size: 24px;
   font-weight: 400;
   color: #293845;
@@ -96,7 +101,6 @@ const ContainerSection = styled.ul`
   }
 
   h1 {
-    font-family: "Roboto", sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
@@ -121,7 +125,6 @@ const Footer = styled.div`
   align-items: center;
   h1 {
     margin-left: 4%;
-    font-family: "Roboto", sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 26px;
