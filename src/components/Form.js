@@ -1,17 +1,25 @@
+import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-export default function Form({selected}) {
+export default function Form({ selected }) {
   const [name, setName] = useState("");
   const [cpf, setCpf] = useState("");
-  
-  function post(e){
-    e.preventDefault(); 
-    console.log(name, cpf, selected)
+  const navigate = useNavigate();
+
+  function post(e) {
+    e.preventDefault();
+    const promise = axios.post(
+      "https://mock-api.driven.com.br/api/v8/cineflex/seats/book-many",
+      { ids: selected, name, cpf }
+    );
+    promise.then(() => navigate("/checkout"));
+    promise.catch((err) => console.log(err));
   }
   return (
     <Container>
-      <FormS>
+      <FormS onSubmit={post}>
         <ContainerInput>
           <label htmlFor="name">Nome do comprador:</label>
           <Input
@@ -20,6 +28,7 @@ export default function Form({selected}) {
             placeholder="Digite seu nome..."
             value={name}
             onChange={(e) => setName(e.target.value)}
+            required
           ></Input>
         </ContainerInput>
         <ContainerInput>
@@ -30,12 +39,11 @@ export default function Form({selected}) {
             placeholder="Digite seu cpf"
             value={cpf}
             onChange={(e) => setCpf(e.target.value)}
+            required
           ></Input>
         </ContainerInput>
 
-        <Button onClick={(e) => post(e) }>
-          Reservar assento(s)
-        </Button>
+        <Button type="submit">Reservar assento(s)</Button>
       </FormS>
     </Container>
   );
