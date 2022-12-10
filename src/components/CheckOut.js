@@ -7,12 +7,30 @@ export default function CheckOut({
   cpf,
   selectedMovie,
   selectedSuccess,
+  setCpf,
+  setName,
+  setSelected,
+  setSelectedSession,
+  setSelectedSuccess,
+  setSelectedMovie,
+  setImageMovie,
 }) {
+    
+  function clear() {
+    setCpf(undefined);
+    setName(undefined);
+    setSelected([]);
+    setSelectedSession(undefined);
+    setSelectedSuccess(undefined);
+    setSelectedMovie(undefined);
+    setImageMovie(undefined);
+  }
+
   return (
     <Container>
       <Title color="#247A6B">
         Pedido feito
-        <br/>
+        <br />
         com sucesso!
       </Title>
       <ContainerSuccess>
@@ -34,7 +52,9 @@ export default function CheckOut({
         </SubTitle>
       </ContainerSuccess>
       <Link to={`/`}>
-        <Button data-test="go-home-btn">Voltar pra Home</Button>
+        <Button data-test="go-home-btn" onClick={clear}>
+          Voltar pra Home
+        </Button>
       </Link>
     </Container>
   );

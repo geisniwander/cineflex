@@ -62,6 +62,13 @@ function App() {
               selected={selected}
               selectedMovie={selectedMovie}
               selectedSuccess={selectedSuccess}
+              setCpf={setCpf}
+              setName={setName}
+              setSelected={setSelected}
+              setSelectedSession={setSelectedSession}
+              setSelectedSuccess={setSelectedSuccess}
+              setSelectedMovie={setSelectedMovie}
+              setImageMovie={setImageMovie}
             />
           }
         />

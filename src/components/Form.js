@@ -20,7 +20,7 @@ export default function Form({ selected, name, setName, cpf, setCpf }) {
   }
   return (
     <Container>
-      <FormS onSubmit={post}>
+      <FormS>
         <ContainerInput>
           <label htmlFor="name">Nome do comprador:</label>
           <Input
@@ -45,7 +45,7 @@ export default function Form({ selected, name, setName, cpf, setCpf }) {
             data-test="client-cpf"
           ></Input>
         </ContainerInput>
-        <Button type="submit" data-test="book-seat-btn">
+        <Button type="submit" onClick={post} data-test="book-seat-btn">
           Reservar assento(s)
         </Button>
       </FormS>
