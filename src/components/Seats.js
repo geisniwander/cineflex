@@ -98,7 +98,9 @@ export default function Seats({
           <img alt={selectedMovie} src={imageMovie} />
         </MovieImage>
         <Infos>
-          <h1>{selectedMovie} <br/> {selectedSession}</h1>
+          <h1>
+            {selectedMovie} <br /> {selectedSession}
+          </h1>
         </Infos>
       </Footer>
     </Container>

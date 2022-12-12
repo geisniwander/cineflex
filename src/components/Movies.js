@@ -34,9 +34,11 @@ export default function Movies({ setSelectedMovie, setImageMovie }) {
             }}
             to={`/sessoes/${movie.id}`}
           >
-            <li data-test="movie">
-              <img alt={movie.title} src={movie.posterURL} />
-            </li>
+            <Moldure>
+              <li data-test="movie">
+                <img alt={movie.title} src={movie.posterURL} />
+              </li>
+            </Moldure>
           </Link>
         ))}
       </ContainerMovie>
@@ -56,6 +58,26 @@ const Title = styled.div`
   justify-content: center;
 `;
 
+const Moldure = styled.div`
+  width: 145px;
+  height: 209px;
+  background: #ffffff;
+  box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-y: hidden;
+  margin-bottom: 10px;
+  li {
+    width: 129px;
+    height: 193px;
+    overflow: hidden;
+  }
+  img {
+    width: 100%;
+  }
+`;
 const Container = styled.div`
   width: 100%;
   display: flex;
@@ -68,13 +90,4 @@ const ContainerMovie = styled.ul`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  li {
-    width: 129px;
-    height: 193px;
-    margin-bottom: 40px;
-    overflow: hidden;
-  }
-  img {
-    width: 100%;
-  }
 `;

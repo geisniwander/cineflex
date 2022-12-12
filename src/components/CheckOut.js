@@ -15,7 +15,6 @@ export default function CheckOut({
   setSelectedMovie,
   setImageMovie,
 }) {
-    
   function clear() {
     setCpf("");
     setName("");

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
 
-export default function Section({ setSelectedSession , setSelectedSuccess }) {
+export default function Section({ setSelectedSession, setSelectedSuccess }) {
   const { idFilme } = useParams();
   const [sections, setSections] = useState(undefined);
 
@@ -34,9 +34,9 @@ export default function Section({ setSelectedSession , setSelectedSuccess }) {
             {section.showtimes.map((showtime) => (
               <Link
                 key={showtime.id}
-                onClick={() =>{
-                  setSelectedSession(section.weekday + " - " + showtime.name);
-                  setSelectedSuccess(section.date + " " + showtime.name)
+                onClick={() => {
+                  setSelectedSession(`${section.weekday} - ${showtime.name}`);
+                  setSelectedSuccess(`${section.date} ${showtime.name}`);
                 }}
                 to={`/assentos/${showtime.id}`}
               >
@@ -143,4 +143,6 @@ const Button = styled.button`
   margin: 8%;
   margin-right: 3%;
   margin-left: 0;
+  color: white;
+  font-size: 18px;
 `;
